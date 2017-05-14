@@ -23,14 +23,17 @@ loadFrames = function(req, res) {
     ws.on('close', function close() {
          isConnectionOpen = false;
     });
+    res.setHeader('Content-Type', 'application/json');
     res.sendStatus(200);
 }
 
 checkConnection = function(req, res) {
+    res.setHeader('Content-Type', 'application/json');
     res.send({isConnectionOpen});
 }
 
 getFrames = function(req, res) {
+    res.setHeader('Content-Type', 'application/json');
     res.send({frames});
 }
 
@@ -53,12 +56,13 @@ play = function(req, res) {
             throw 'Connection to Fadecandy is closed';
         }
 
-        var frameNumber = Math.round(stopwatch.elapsedMilliseconds * frameRate);
+        var frameNumber = Math.round((stopwatch.elapsedMilliseconds / 1000) * frameRate);
 
         var frame = frames[frameNumber];
 
         if (frame) {
             ws.send(frame);
+            console.log('sending frame ' + frameNumber);
         }
     }
     console.log('Finished playback');
@@ -69,11 +73,13 @@ play = function(req, res) {
     ws = {};
     console.log('Connection closed');
 
+    res.setHeader('Content-Type', 'application/json');
     res.sendStatus(201);
 }
 
 app = express();
 app.use(bodyParser());
+app.setHeader
 app.get('/api/frames', getFrames);
 app.post('/api/load', loadFrames);
 app.get('/api/checkConnection', checkConnection);

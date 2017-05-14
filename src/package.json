@@ -1,0 +1,19 @@
+{
+  "name": "box9d-leds-websocket-api",
+  "version": "1.0.0",
+  "description": "An API to load and playback frames to a fadecandy server via websockets",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Box9d/box9d-leds-websocket-api.git"
+  },
+  "author": "Rick Powell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Box9d/box9d-leds-websocket-api.git/issues"
+  },
+  "homepage": "https://github.com/Box9d/box9d-leds-websocket-api.git#readme"
+}

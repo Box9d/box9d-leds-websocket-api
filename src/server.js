@@ -78,7 +78,7 @@ play = function(req, res) {
 }
 
 app = express();
-app.use(bodyParser());
+app.use(bodyParser({limit: '1000mb'}));
 app.setHeader
 app.get('/api/frames', getFrames);
 app.post('/api/load', loadFrames);

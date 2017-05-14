@@ -4,7 +4,7 @@
   "description": "An API to load and playback frames to a fadecandy server via websockets",
   "main": "app.js",
   "scripts": {
-    "test": "test"
+    "start": "node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/Box9d/box9d-leds-websocket-api.git#readme",
   "dependencies": {
-    "express": "^4.15.2"
-  },
-  "devDependencies": {
-    "typescript": "^2.3.2"
+    "express": "^4.15.2",
+    "body-parser": "^1.17.1",
+    "node-stopwatch": "^0.0.1",
+    "ws": "^2.3.1"
   }
 }

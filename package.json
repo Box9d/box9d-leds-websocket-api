@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/Box9d/box9d-leds-websocket-api.git/issues"
   },
-  "homepage": "https://github.com/Box9d/box9d-leds-websocket-api.git#readme"
+  "homepage": "https://github.com/Box9d/box9d-leds-websocket-api.git#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "typescript": "^2.3.2"
+  }
 }

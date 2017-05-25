@@ -11,6 +11,7 @@ const config = {
 var frames = [];
 var stopwatch = Stopwatch.create();
 var isConnectionOpen = false;
+var cancel = false;
 var ws = {};
 
 loadFrames = function(req, res) {
@@ -39,6 +40,7 @@ getFrames = function(req, res) {
 
 play = function(req, res) {
     var frameRate = req.body.frameRate;
+    cancel = false;
 
     if (!frameRate) {
         throw 'Framerate not provided';
@@ -50,7 +52,7 @@ play = function(req, res) {
     stopwatch.reset();
     stopwatch.start();
 
-    while (stopwatch.elapsedMilliseconds < totalSeconds * 1000) {
+    while (stopwatch.elapsedMilliseconds < totalSeconds * 1000 && !cancel) {
 
         if (!isConnectionOpen) {
             throw 'Connection to Fadecandy is closed';
@@ -77,6 +79,10 @@ play = function(req, res) {
     res.sendStatus(201);
 }
 
+stop = function(req, res) {
+    cancel = true;
+}
+
 app = express();
 app.use(bodyParser({limit: '1000mb'}));
 app.setHeader
@@ -84,6 +90,7 @@ app.get('/api/frames', getFrames);
 app.post('/api/load', loadFrames);
 app.get('/api/checkConnection', checkConnection);
 app.post('/api/play', play);
+app.post('/api/stop', stop);
 
 app.listen(8003, function () {
 });
